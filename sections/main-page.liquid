@@ -1,0 +1,755 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css">
+
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:'Poppins',sans-serif;
+}
+
+.hero-slider{
+  overflow:hidden;
+}
+
+/* EACH SLIDE */
+
+.slide{
+  min-height:650px;
+
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+
+  display:flex !important;
+  align-items:center;
+
+  position:relative;
+}
+
+.slide::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(255,255,255,0.04);
+}
+
+.slide-container{
+  max-width:1200px;
+  width:100%;
+
+  margin:0 auto;
+  padding:0 20px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  gap:40px;
+
+  position:relative;
+  z-index:5;
+}
+
+/* LEFT */
+
+.content{
+  width:50%;
+}
+
+.badge{
+  background:#ff5c35;
+  color:#fff;
+
+  padding:8px 16px;
+  border-radius:30px;
+
+  font-size:11px;
+  font-weight:600;
+
+  display:inline-block;
+  margin-bottom:24px;
+}
+
+.content h1{
+  font-size:68px;
+  line-height:1.05;
+  font-weight:700;
+
+  color:#1d1d35;
+
+  margin-bottom:25px;
+  letter-spacing:-2px;
+}
+
+.content h1 span{
+  color:#ff5c35;
+}
+
+.content p{
+  font-size:16px;
+  line-height:1.9;
+  color:#666;
+
+  max-width:500px;
+
+  margin-bottom:35px;
+}
+
+/* BUTTONS */
+
+.btns{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.btn-primary{
+  background:#ff5c35;
+  color:#fff;
+
+  padding:14px 24px;
+
+  border-radius:40px;
+
+  text-decoration:none;
+
+  font-size:14px;
+  font-weight:500;
+
+  transition:0.3s;
+}
+
+.btn-primary:hover{
+  background:#eb4d2a;
+}
+
+.btn-secondary{
+  border:1.5px solid #1d1d35;
+  color:#1d1d35;
+
+  padding:13px 24px;
+
+  border-radius:40px;
+
+  text-decoration:none;
+
+  font-size:14px;
+  font-weight:500;
+
+  transition:0.3s;
+}
+
+.btn-secondary:hover{
+  background:#1d1d35;
+  color:#fff;
+}
+
+/* RIGHT */
+
+.image{
+  width:50%;
+
+  display:flex;
+  justify-content:flex-end;
+
+  position:relative;
+}
+
+.image-card{
+  width:390px;
+  height:390px;
+
+  background:#eee4df;
+
+  border-radius:45px;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  box-shadow:0 25px 60px rgba(0,0,0,0.08);
+
+  position:relative;
+}
+
+.image img{
+  width:260px;
+  object-fit:contain;
+}
+
+/* BADGES */
+
+.rating{
+  position:absolute;
+
+  top:10px;
+  right:-15px;
+
+  background:#fff;
+
+  padding:10px 16px;
+
+  border-radius:14px;
+
+  font-size:13px;
+  font-weight:500;
+
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+.discount{
+  position:absolute;
+
+  left:30px;
+  bottom:20px;
+
+  background:#fff;
+
+  padding:10px 16px;
+
+  border-radius:14px;
+
+  color:#ff5c35;
+
+  font-size:13px;
+  font-weight:500;
+
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* DOTS */
+
+.slick-dots{
+  bottom:25px;
+}
+
+.slick-dots li button:before{
+  font-size:10px;
+  color:#cfcfcf;
+  opacity:1;
+}
+
+.slick-dots li.slick-active button:before{
+  color:#ff5c35;
+}
+
+/* ARROWS */
+
+.slick-prev,
+.slick-next{
+  z-index:50;
+}
+
+.slick-prev{
+  left:25px;
+}
+
+.slick-next{
+  right:25px;
+}
+
+.slick-prev:before,
+.slick-next:before{
+  color:#1d1d35;
+  font-size:26px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:991px){
+
+  .slide{
+    padding:70px 0;
+  }
+
+  .slide-container{
+    flex-direction:column;
+    text-align:center;
+  }
+
+  .content,
+  .image{
+    width:100%;
+  }
+
+  .content p{
+    margin:auto;
+    margin-bottom:35px;
+  }
+
+  .btns{
+    justify-content:center;
+  }
+
+  .image{
+    justify-content:center;
+  }
+
+  .content h1{
+    font-size:46px;
+  }
+
+  .image-card{
+    width:320px;
+    height:320px;
+  }
+
+  .image img{
+    width:210px;
+  }
+  .mh{
+  
+    font-size:23px;
+  }
+
+  {% comment %} banner ke niche vala sec {% endcomment %}
+
+  .category-strip {
+    background: #fff;
+    padding: 30px 20px;
+    border-top: 1px solid #eee;
+  }
+
+  .category-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 22px;
+    flex-wrap: wrap;
+  }
+
+  .category-item {
+    text-align: center;
+    text-decoration: none;
+    color: #222;
+    transition: 0.3s;
+  }
+
+  .category-icon-box {
+    width: 72px;
+    height: 72px;
+    border-radius: 20px;
+    background: #f6f6f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    border: 2px solid transparent;
+    transition: 0.3s;
+  }
+
+  .category-item.active .category-icon-box {
+    border-color: #ff5a36;
+    background: #fff7f4;
+  }
+
+  .category-item:hover .category-icon-box {
+    transform: translateY(-5px);
+  }
+
+  .category-icon {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+  }
+
+  .category-title {
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  @media(max-width:768px){
+
+    .category-wrapper{
+      gap:15px;
+    }
+
+    .category-icon-box{
+      width:60px;
+      height:60px;
+    }
+
+    .category-title{
+      font-size:11px;
+    }
+  }
+
+}
+
+  .category-strip {
+    background: #fff;
+    padding: 30px 20px;
+    border-top: 1px solid #eee;
+  }
+
+ .category-wrapper{
+  max-width:1400px;
+  margin:auto;
+
+  display:flex;
+  align-items:center;
+justify-content:center;
+
+  gap:12px;
+
+  flex-wrap:nowrap;
+  overflow-x:auto;
+
+  scrollbar-width:none;
+}
+
+.category-wrapper::-webkit-scrollbar{
+  display:none;
+}
+.category-item{
+  min-width:90px;
+  flex-shrink:0;
+}
+
+  .category-icon-box {
+    width: 72px;
+    height: 72px;
+    border-radius: 20px;
+    background: #f6f6f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    border: 2px solid transparent;
+    transition: 0.3s;
+  }
+
+  .category-item.active .category-icon-box {
+    border-color: #ff5a36;
+    background: #fff7f4;
+  }
+
+  .category-item:hover .category-icon-box {
+    transform: translateY(-5px);
+  }
+
+  .category-icon {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+  }
+
+  .category-title {
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  @media(max-width:768px){
+
+    .category-wrapper{
+      gap:15px;
+    }
+
+    .category-icon-box{
+      width:60px;
+      height:60px;
+    }
+
+    .category-title{
+      font-size:11px;
+    }
+  }
+
+
+</style>
+
+<section class="hero-slider">
+
+  <div id="slider-{{ section.id }}">
+
+    {% for block in section.blocks %}
+
+      <div
+        class="slide"
+        style="background-image:url('{{ block.settings.bg_image | image_url }}');"
+      >
+
+        <div class="slide-container">
+
+          <!-- LEFT -->
+
+          <div class="content">
+
+            <span class="badge">
+              {{ block.settings.badge }}
+            </span>
+
+            <h1 class="mh">
+              {{ block.settings.heading }}
+            </h1>
+
+            <p>
+              {{ block.settings.text }}
+            </p>
+
+            <div class="btns">
+
+              <a
+                href="{{ block.settings.btn_link }}"
+                class="btn-primary"
+              >
+                {{ block.settings.btn_text }}
+              </a>
+
+              <a href="#" class="btn-secondary">
+                View Lookbook
+              </a>
+
+            </div>
+
+          </div>
+
+          <!-- RIGHT -->
+
+          <div class="image">
+
+            <div class="image-card">
+
+              {% if block.settings.image %}
+                <img
+                  src="{{ block.settings.image | image_url }}"
+                  alt=""
+                >
+              {% endif %}
+
+            </div>
+
+            <div class="rating">
+              ⭐ 4.9 Rating
+            </div>
+
+            <div class="discount">
+              🔥 50% OFF Today!
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    {% endfor %}
+
+  </div>
+
+  <div class="category-strip">
+
+  <div class="category-wrapper">
+
+    {% for block in section.blocks %}
+
+      {% if block.type == 'category' %}
+
+        <a 
+          href="{{ block.settings.link }}" 
+          class="category-item {% if block.settings.active %}active{% endif %}"
+        >
+
+          <div class="category-icon-box">
+
+            {% if block.settings.icon != blank %}
+              <img
+                src="{{ block.settings.icon | image_url: width: 100 }}"
+                alt=""
+                class="category-icon"
+              >
+            {% endif %}
+
+          </div>
+
+          <div class="category-title">
+            {{ block.settings.title }}
+          </div>
+
+        </a>
+
+      {% endif %}
+
+    {% endfor %}
+
+  </div>
+
+</div>
+
+</section>
+
+<script>
+
+
+$(document).ready(function(){
+
+  $('#slider-{{ section.id }}').slick({
+
+    dots:true,
+    arrows:true,
+
+    autoplay:true,
+    autoplaySpeed:5000,
+
+    infinite:true,
+
+    speed:700,
+
+    slidesToShow:1,
+    slidesToScroll:1
+
+  });
+
+});
+
+
+</script>
+{% schema %}
+{
+  "name": "Premium Hero Slider",
+
+  "blocks": [
+
+    {
+      "type": "slide",
+      "name": "Slide",
+
+      "settings": [
+
+        {
+          "type": "image_picker",
+          "id": "bg_image",
+          "label": "Background Image"
+        },
+
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Product Image"
+        },
+
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "Badge",
+          "default": "New Season 2025"
+        },
+
+        {
+          "type": "html",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Step Into <span>Style</span><br>This Season"
+        },
+
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description",
+          "default": "Discover the latest collection of premium sneakers and footwear — crafted for comfort and style."
+        },
+
+        {
+          "type": "text",
+          "id": "btn_text",
+          "label": "Button Text",
+          "default": "Shop Now"
+        },
+
+        {
+          "type": "url",
+          "id": "btn_link",
+          "label": "Button Link"
+        }
+
+      ]
+    },
+
+
+
+
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Category Icon"
+        },
+
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Footwear"
+        },
+
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+
+        {
+          "type": "checkbox",
+          "id": "active",
+          "label": "Highlight Active",
+          "default": false
+        }
+
+      ]
+    }
+
+  ],
+
+  "presets": [
+    {
+      "name": "Premium Hero Slider",
+
+      "blocks": [
+
+        {
+          "type":"slide"
+        },
+
+        {
+          "type":"slide"
+        },
+
+        {
+          "type":"category"
+        },
+
+        {
+          "type":"category"
+        },
+
+        {
+          "type":"category"
+        }
+
+      ]
+    }
+    
+  ]
+}
+{% endschema %}
+
+
+
+
+
+

@@ -1,0 +1,170 @@
+<style>
+.feature-icons-section{
+  background:#0d0d24;
+  padding:50px 0;
+}
+
+.feature-icons-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:40px;
+  align-items:start;
+}
+
+.feature-item{
+  display:flex;
+  gap:15px;
+  align-items:flex-start;
+}
+
+.feature-item{
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+
+.feature-icon{
+  width:70px;
+  height:70px;
+  border-radius:16px;
+  background:rgba(255,255,255,0.08);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:18px;
+}
+
+.feature-icon img{
+  width:32px;
+  height:32px;
+  object-fit:contain;
+}
+
+.feature-content h3{
+  color:#fff;
+  font-size:30px;
+  font-weight:700;
+  margin:0 0 12px;
+  text-transform:uppercase;
+}
+
+.feature-content p{
+  color:rgba(255,255,255,0.7);
+  font-size:16px;
+  line-height:1.6;
+  margin:0;
+  max-width:280px;
+}
+
+@media(max-width:990px){
+  .feature-icons-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:768px){
+  .feature-icons-grid{
+    grid-template-columns:1fr;
+    gap:25px;
+  }
+
+  .feature-icons-section{
+    padding:35px 0;
+  }
+  .myh{
+    font-size:"10px";
+}
+}
+</style>
+
+
+{% comment %}
+  Shopify Dynamic Feature Section
+  File: sections/feature-icons.liquid
+{% endcomment %}
+
+<section class="feature-icons-section">
+  <div class="page-width">
+    <div class="feature-icons-grid">
+      
+      {% for block in section.blocks %}
+        <div class="feature-item" {{ block.shopify_attributes }}>
+          
+          {% if block.settings.icon != blank %}
+            <div class="feature-icon">
+              <img 
+                src="{{ block.settings.icon | image_url: width: 100 }}" 
+                alt="{{ block.settings.heading}}"
+                loading="lazy"
+                width="50"
+                height="50"
+              >
+            </div>
+          {% endif %}
+
+          <div class="feature-content">
+            <h3 class="myh">{{ block.settings.heading }}</h3>
+            <p>{{ block.settings.text }}</p>
+          </div>
+
+        </div>
+      {% endfor %}
+
+    </div>
+  </div>
+</section>
+
+
+
+{% schema %}
+{
+  "name": "Feature Icons",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Free Delivery"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Free shipping on all orders above ₹999."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Feature Icons",
+      "blocks": [
+        {
+          "type": "feature"
+        },
+        {
+          "type": "feature"
+        },
+        {
+          "type": "feature"
+        },
+        {
+          "type": "feature"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

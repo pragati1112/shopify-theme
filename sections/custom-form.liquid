@@ -1,0 +1,367 @@
+<section class="custom-contact-section">
+  <div class="page-width">
+
+    <div class="contact-top-text">
+      {{ section.settings.top_text }}
+    </div>
+
+    <div class="contact-wrapper">
+
+      <!-- LEFT FORM -->
+      <div class="contact-form-side">
+
+        <div class="contact-heading">
+          <h2>Get In <span>Touch</span></h2>
+        </div>
+
+        {% form 'contact' %}
+
+          <div class="contact-grid">
+
+            <div class="field">
+              <label>First Name</label>
+              <input
+                type="text"
+                name="contact[first_name]"
+                placeholder="Rahul"
+              >
+            </div>
+
+            <div class="field">
+              <label>Last Name</label>
+              <input
+                type="text"
+                name="contact[last_name]"
+                placeholder="Sharma"
+              >
+            </div>
+
+          </div>
+
+          <div class="field">
+            <label>Email Address</label>
+            <input
+              type="email"
+              name="contact[email]"
+              placeholder="rahul@example.com"
+              required
+            >
+          </div>
+
+          <div class="field">
+            <label>Phone Number</label>
+            <input
+              type="tel"
+              name="contact[phone]"
+              placeholder="+91 98765 43210"
+            >
+          </div>
+
+          <div class="field">
+            <label>Subject</label>
+            <input
+              type="text"
+              name="contact[subject]"
+              placeholder="Select a topic"
+            >
+          </div>
+
+          <div class="field">
+            <label>Message</label>
+            <textarea
+              name="contact[body]"
+              placeholder="Tell us how we can help you..."
+            ></textarea>
+          </div>
+
+          <button type="submit" class="contact-btn">
+            {{ section.settings.button_text }} →
+          </button>
+
+        {% endform %}
+
+      </div>
+
+      <!-- RIGHT INFO -->
+      <div class="contact-info-side">
+
+        <!-- Address -->
+        <div class="info-box">
+          <div class="info-icon">📍</div>
+
+          <div class="info-content">
+            <h4>Our Address</h4>
+            <p>{{ section.settings.address }}</p>
+          </div>
+        </div>
+
+        <!-- Phone -->
+        <div class="info-box">
+          <div class="info-icon">📞</div>
+
+          <div class="info-content">
+            <h4>Phone Number</h4>
+            <p>{{ section.settings.phone }}</p>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="info-box">
+          <div class="info-icon">✉️</div>
+
+          <div class="info-content">
+            <h4>Email Us</h4>
+            <p>{{ section.settings.email }}</p>
+          </div>
+        </div>
+
+        <!-- Map -->
+        <div class="map-box">
+
+          {% if section.settings.map_image != blank %}
+
+            <img
+              src="{{ section.settings.map_image | image_url: width: 1200 }}"
+              alt="Map"
+              loading="lazy"
+            >
+
+          {% else %}
+
+            <div class="map-placeholder">
+              🗺 Interactive Map Coming Soon
+            </div>
+
+          {% endif %}
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+
+.custom-contact-section{
+  padding:90px 0;
+  background:#f7f7f7;
+}
+
+.contact-top-text{
+  text-align:right;
+  color:#a0a0a0;
+  margin-bottom:20px;
+  font-size:14px;
+}
+
+.contact-wrapper{
+  display:grid;
+  grid-template-columns:1.3fr 1fr;
+  gap:40px;
+}
+
+.contact-heading h2{
+  font-size:46px;
+  margin:0 0 35px;
+  color:#1d1d1d;
+  font-weight:700;
+}
+
+.contact-heading span{
+  color:#ff5c35;
+}
+
+.contact-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+
+.field{
+  margin-bottom:20px;
+}
+
+.field label{
+  display:block;
+  margin-bottom:10px;
+  font-size:14px;
+  color:#444;
+  font-weight:500;
+}
+
+.field input,
+.field textarea{
+  width:100%;
+  border:1px solid #dddddd;
+  background:#fff;
+  border-radius:10px;
+  padding:16px;
+  font-size:15px;
+  outline:none;
+  transition:0.3s;
+}
+
+.field input:focus,
+.field textarea:focus{
+  border-color:#ff5c35;
+}
+
+.field textarea{
+  min-height:150px;
+  resize:none;
+}
+
+.contact-btn{
+  border:none;
+  background:#ff5c35;
+  color:#fff;
+  padding:16px 32px;
+  border-radius:10px;
+  font-size:15px;
+  font-weight:600;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.contact-btn:hover{
+  transform:translateY(-2px);
+}
+
+.contact-info-side{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+
+.info-box{
+  background:#f1efee;
+  padding:28px;
+  border-radius:16px;
+  display:flex;
+  gap:18px;
+  align-items:flex-start;
+}
+
+.info-icon{
+  width:50px;
+  height:50px;
+  border-radius:12px;
+  background:#f8e9e4;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+  flex-shrink:0;
+}
+
+.info-content h4{
+  margin:0 0 8px;
+  font-size:18px;
+  color:#1d1d1d;
+}
+
+.info-content p{
+  margin:0;
+  color:#666;
+  line-height:1.7;
+}
+
+.map-box{
+  height:240px;
+  border-radius:18px;
+  overflow:hidden;
+  background:#eceae8;
+}
+
+.map-box img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.map-placeholder{
+  width:100%;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#999;
+  font-size:15px;
+}
+
+@media(max-width:990px){
+
+  .contact-wrapper{
+    grid-template-columns:1fr;
+  }
+
+}
+
+@media(max-width:768px){
+
+  .custom-contact-section{
+    padding:60px 0;
+  }
+
+  .contact-grid{
+    grid-template-columns:1fr;
+  }
+
+  .contact-heading h2{
+    font-size:34px;
+  }
+
+}
+
+</style>
+
+{% schema %}
+{
+  "name": "Custom Contact",
+  "settings": [
+    {
+      "type": "text",
+      "id": "top_text",
+      "label": "Top Text",
+      "default": "We’d love to hear from you"
+    },
+    {
+      "type": "textarea",
+      "id": "address",
+      "label": "Address",
+      "default": "ShopZone HQ, 42 Commerce Street, Ahmedabad, Gujarat 380001"
+    },
+    {
+      "type": "text",
+      "id": "phone",
+      "label": "Phone",
+      "default": "1800-SHOPZONE (toll-free)"
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Email",
+      "default": "support@shopzone.in"
+    },
+    {
+      "type": "image_picker",
+      "id": "map_image",
+      "label": "Map Image"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Send Message"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Contact"
+    }
+  ]
+}
+{% endschema %}

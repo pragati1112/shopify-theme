@@ -1,0 +1,20 @@
+<h1>{{ section.settings.pr_page | default: 20 }}</h1>
+
+{% schema %}
+{
+  "name": "mysection",
+  "settings": [
+    {
+      "type": "number",
+      "id": "pr_page",
+      "label": "Products Per Page",
+      "default": 20
+    }
+  ],
+  "presets": [
+    {
+      "name": "mysection"
+    }
+  ]
+}
+{% endschema %}

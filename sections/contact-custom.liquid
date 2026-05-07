@@ -1,0 +1,66 @@
+<style>
+
+  .mainsection{
+    display:flex;
+    align-items-center:"center";
+  }
+
+
+  </style>
+
+
+  <section>
+
+    <h1>{{ section.settings.heading_font.family }}<h2>
+
+
+      <div class="mainsection">
+        <div class="right">
+          <img src="{{ section.settings.image_with_text_image | image_url: width: 500 }}">
+       
+
+        </div>
+
+          <div class="left">
+          
+        </div>
+      </div>
+
+  </section>
+
+
+
+
+  {% schema %}
+
+  {
+    "name":"my section",
+    "settings":[
+      {
+        "type":"text",
+        "id":"my_self",
+        "label":"mytext"
+      
+      },
+      {
+  "type": "font_picker",
+  "id": "heading_font",
+  "label": "Heading font",
+  "default": "helvetica_n4"
+},
+{
+  "type": "image_picker",
+  "id": "image_with_text_image",
+  "label": "Image"
+}
+    ],
+    "blocks":[],
+    "presets":[
+      {
+        "name":"mysection",
+      }
+    ]
+  }
+
+
+  {% endschema %}

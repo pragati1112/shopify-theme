@@ -1,0 +1,360 @@
+<footer class="custom-footer">
+  <div class="page-width">
+
+    <div class="footer-grid">
+
+      <!-- BRAND -->
+      <div class="footer-brand">
+
+        <h2>{{ section.settings.logo_text }}</h2>
+
+        <p>
+          {{ section.settings.description }}
+        </p>
+
+        <div class="footer-socials">
+
+          {% if section.settings.facebook != blank %}
+            <a href="{{ section.settings.facebook }}">f</a>
+          {% endif %}
+
+          {% if section.settings.twitter != blank %}
+            <a href="{{ section.settings.twitter }}">𝕏</a>
+          {% endif %}
+
+          {% if section.settings.linkedin != blank %}
+            <a href="{{ section.settings.linkedin }}">in</a>
+          {% endif %}
+
+          {% if section.settings.youtube != blank %}
+            <a href="{{ section.settings.youtube }}">▶</a>
+          {% endif %}
+
+          {% if section.settings.instagram != blank %}
+            <a href="{{ section.settings.instagram }}">⌾</a>
+          {% endif %}
+
+        </div>
+
+      </div>
+
+      <!-- MENU 1 -->
+      <div class="footer-links">
+
+        <h4>Quick Links</h4>
+
+        <ul>
+          {% for link in linklists[section.settings.menu_1].links %}
+            <li>
+              <a href="{{ link.url }}">{{ link.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+
+      </div>
+
+      <!-- MENU 2 -->
+      <div class="footer-links">
+
+        <h4>Customer Care</h4>
+
+        <ul>
+          {% for link in linklists[section.settings.menu_2].links %}
+            <li>
+              <a href="{{ link.url }}">{{ link.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+
+      </div>
+
+      <!-- NEWSLETTER -->
+      <div class="footer-newsletter">
+
+        <h4>Newsletter</h4>
+
+        <p>
+          Get exclusive deals and latest trends delivered to your inbox.
+        </p>
+
+        {% form 'customer' %}
+
+          <div class="newsletter-form">
+
+            <input
+              type="email"
+              name="contact[email]"
+              placeholder="Your email address"
+              required
+            >
+
+            <button type="submit">
+              Subscribe
+            </button>
+
+          </div>
+
+        {% endform %}
+
+        <span class="newsletter-note">
+          🔒 No spam. Unsubscribe anytime.
+        </span>
+
+      </div>
+
+    </div>
+
+    <!-- BOTTOM -->
+    <div class="footer-bottom">
+
+      <div class="footer-copy">
+        © 2025 ShopZone. All rights reserved. Made with ❤️ in India.
+      </div>
+
+      <div class="payment-icons">
+        <span>UPI</span>
+        <span>VISA</span>
+        <span>MC</span>
+        <span>AMEX</span>
+        <span>RuPay</span>
+      </div>
+
+    </div>
+
+  </div>
+</footer>
+
+<style>
+
+.custom-footer{
+  background:#11110f;
+  color:#fff;
+  padding:80px 0 30px;
+}
+
+.footer-grid{
+  display:grid;
+  grid-template-columns:1.3fr 1fr 1fr 1.3fr;
+  gap:50px;
+}
+
+.footer-brand h2{
+  font-size:38px;
+  margin:0 0 20px;
+  font-weight:700;
+  color:#ff5d36;
+}
+
+.footer-brand p{
+  color:#9d9d9d;
+  line-height:1.9;
+  max-width:320px;
+  margin-bottom:25px;
+}
+
+.footer-socials{
+  display:flex;
+  gap:12px;
+}
+
+.footer-socials a{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  background:#1f1f1d;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  text-decoration:none;
+  transition:0.3s;
+}
+
+.footer-socials a:hover{
+  background:#ff5d36;
+}
+
+.footer-links h4,
+.footer-newsletter h4{
+  margin:0 0 22px;
+  font-size:18px;
+}
+
+.footer-links ul{
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+
+.footer-links li{
+  margin-bottom:14px;
+}
+
+.footer-links a{
+  color:#9d9d9d;
+  text-decoration:none;
+  transition:0.3s;
+}
+
+.footer-links a:hover{
+  color:#fff;
+}
+
+.footer-newsletter p{
+  color:#9d9d9d;
+  line-height:1.7;
+  margin-bottom:18px;
+}
+
+.newsletter-form{
+  display:flex;
+  gap:10px;
+  margin-bottom:12px;
+}
+
+.newsletter-form input{
+  flex:1;
+  border:none;
+  outline:none;
+  background:#1f1f1d;
+  color:#fff;
+  border-radius:10px;
+  padding:15px;
+}
+
+.newsletter-form button{
+  border:none;
+  background:#ff5d36;
+  color:#fff;
+  border-radius:10px;
+  padding:15px 20px;
+  cursor:pointer;
+  font-weight:600;
+}
+
+.newsletter-note{
+  color:#777;
+  font-size:13px;
+}
+
+.footer-bottom{
+  margin-top:60px;
+  padding-top:25px;
+  border-top:1px solid rgba(255,255,255,0.08);
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  flex-wrap:wrap;
+}
+
+.footer-copy{
+  color:#7f7f7f;
+  font-size:14px;
+}
+
+.payment-icons{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.payment-icons span{
+  background:#1f1f1d;
+  color:#cfcfcf;
+  padding:8px 12px;
+  border-radius:6px;
+  font-size:12px;
+}
+
+@media(max-width:990px){
+
+  .footer-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+}
+
+@media(max-width:768px){
+
+  .custom-footer{
+    padding:60px 0 25px;
+  }
+
+  .footer-grid{
+    grid-template-columns:1fr;
+    gap:40px;
+  }
+
+  .newsletter-form{
+    flex-direction:column;
+  }
+
+  .footer-brand h2{
+    font-size:32px;
+  }
+
+}
+
+</style>
+
+{% schema %}
+{
+  "name": "Custom Footer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "logo_text",
+      "label": "Logo Text",
+      "default": "ShopZone"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Your one-stop destination for premium fashion, electronics, and lifestyle products."
+    },
+    {
+      "type": "link_list",
+      "id": "menu_1",
+      "label": "Quick Links Menu"
+    },
+    {
+      "type": "link_list",
+      "id": "menu_2",
+      "label": "Customer Care Menu"
+    },
+    {
+      "type": "url",
+      "id": "facebook",
+      "label": "Facebook"
+    },
+    {
+      "type": "url",
+      "id": "twitter",
+      "label": "Twitter"
+    },
+    {
+      "type": "url",
+      "id": "linkedin",
+      "label": "LinkedIn"
+    },
+    {
+      "type": "url",
+      "id": "youtube",
+      "label": "YouTube"
+    },
+    {
+      "type": "url",
+      "id": "instagram",
+      "label": "Instagram"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Footer"
+    }
+  ]
+}
+{% endschema %}

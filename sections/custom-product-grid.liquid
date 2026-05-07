@@ -1,0 +1,287 @@
+<section class="custom-products">
+
+  <div class="custom-container">
+
+    <!-- LEFT FILTER -->
+
+    <aside class="filters">
+
+      <h3>Categories</h3>
+
+      <ul>
+        <li>Footwear</li>
+        <li>Electronics</li>
+        <li>Bags</li>
+        <li>Sports</li>
+      </ul>
+
+      <h3>Price Range</h3>
+
+      <input type="range">
+
+      <h3>Colors</h3>
+
+      <div class="colors">
+        <span class="c1"></span>
+        <span class="c2"></span>
+        <span class="c3"></span>
+        <span class="c4"></span>
+      </div>
+
+      <button>Apply Filters</button>
+
+    </aside>
+
+    <!-- RIGHT PRODUCTS -->
+
+    <div class="products-area">
+
+      <div class="topbar">
+
+        <h2>
+          All <span>Products</span>
+        </h2>
+
+      </div>
+
+      <div class="products-grid">
+
+        {% for product in collections[section.settings.collection].products limit: 9 %}
+
+          <div class="product-card">
+
+            <div class="product-image">
+
+              <img
+                src="{{ product.featured_image | image_url }}"
+                alt="{{ product.title }}"
+              >
+
+            </div>
+
+            <div class="product-content">
+
+              <p class="product-vendor">
+                {{ product.vendor }}
+              </p>
+
+              <h3>
+                {{ product.title }}
+              </h3>
+
+              <div class="price">
+
+                <span class="new-price">
+                  {{ product.price | money }}
+                </span>
+
+                {% if product.compare_at_price > product.price %}
+                  <span class="old-price">
+                    {{ product.compare_at_price | money }}
+                  </span>
+                {% endif %}
+
+              </div>
+
+            </div>
+
+          </div>
+
+        {% endfor %}
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<style>
+
+.custom-products{
+  background:#f5f3f1;
+  padding:60px 0;
+}
+
+.custom-container{
+  max-width:1300px;
+  margin:auto;
+  padding:0 20px;
+
+  display:grid;
+  grid-template-columns:260px 1fr;
+  gap:25px;
+}
+
+/* SIDEBAR */
+
+.filters{
+  background:#fff;
+  padding:25px;
+  border-radius:20px;
+  height:fit-content;
+}
+
+.filters h3{
+  margin-bottom:15px;
+  font-size:18px;
+}
+
+.filters ul{
+  list-style:none;
+  margin-bottom:25px;
+}
+
+.filters li{
+  padding:8px 0;
+  color:#666;
+  cursor:pointer;
+}
+
+.colors{
+  display:flex;
+  gap:10px;
+  margin:20px 0;
+}
+
+.colors span{
+  width:22px;
+  height:22px;
+  border-radius:50%;
+  display:block;
+}
+
+.c1{background:red;}
+.c2{background:blue;}
+.c3{background:green;}
+.c4{background:orange;}
+
+.filters button{
+  width:100%;
+  height:48px;
+  border:none;
+  background:#ff5c35;
+  color:#fff;
+  border-radius:12px;
+  cursor:pointer;
+}
+
+/* PRODUCTS */
+
+.products-area h2{
+  font-size:36px;
+  margin-bottom:30px;
+}
+
+.products-area h2 span{
+  color:#ff5c35;
+}
+
+.products-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.product-card{
+  background:#fff;
+  border-radius:20px;
+  overflow:hidden;
+  transition:0.3s;
+}
+
+.product-card:hover{
+  transform:translateY(-5px);
+}
+
+.product-image{
+  background:#f6f6f6;
+  padding:40px;
+  height:240px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.product-image img{
+  width:100%;
+  height:180px;
+  object-fit:contain;
+}
+
+.product-content{
+  padding:20px;
+}
+
+.product-vendor{
+  font-size:12px;
+  color:#999;
+  margin-bottom:10px;
+}
+
+.product-content h3{
+  font-size:18px;
+  margin-bottom:14px;
+}
+
+.price{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.new-price{
+  color:#ff5c35;
+  font-weight:700;
+}
+
+.old-price{
+  color:#aaa;
+  text-decoration:line-through;
+}
+
+/* MOBILE */
+
+@media(max-width:991px){
+
+  .custom-container{
+    grid-template-columns:1fr;
+  }
+
+  .products-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+}
+
+@media(max-width:600px){
+
+  .products-grid{
+    grid-template-columns:1fr;
+  }
+
+}
+
+</style>
+
+{% schema %}
+{
+  "name":"Custom Product Grid",
+
+  "settings":[
+    {
+      "type":"collection",
+      "id":"collection",
+      "label":"Select Collection"
+    }
+  ],
+
+  "presets":[
+    {
+      "name":"Custom Product Grid"
+    }
+  ]
+}
+{% endschema %}

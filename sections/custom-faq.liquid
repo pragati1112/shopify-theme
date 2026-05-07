@@ -1,0 +1,317 @@
+<section class="custom-faq-section">
+  <div class="page-width">
+
+    <div class="faq-wrapper">
+
+      <!-- LEFT FAQ -->
+      <div class="faq-left">
+
+        <div class="faq-heading">
+          <h2>Frequently Asked <span>Questions</span></h2>
+        </div>
+
+        <div class="faq-items">
+
+          {% for block in section.blocks %}
+            
+            <div class="faq-item" {{ block.shopify_attributes }}>
+              
+              <button class="faq-question">
+                {{ block.settings.question }}
+                <span class="faq-icon">+</span>
+              </button>
+
+              <div class="faq-answer">
+                <p>{{ block.settings.answer }}</p>
+              </div>
+
+            </div>
+
+          {% endfor %}
+
+        </div>
+
+      </div>
+
+      <!-- RIGHT SUPPORT BOX -->
+      <div class="faq-support">
+
+        <div class="support-icon">
+          💬
+        </div>
+
+        <h3>{{ section.settings.support_heading }}</h3>
+
+        <p>{{ section.settings.support_text }}</p>
+
+        <a href="{{ section.settings.button_link }}" class="support-btn">
+          {{ section.settings.button_text }}
+        </a>
+
+        <div class="support-phone">
+          ☎ {{ section.settings.phone }}
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+
+.custom-faq-section{
+  padding:80px 0;
+  background:#f7f7f7;
+}
+
+.faq-wrapper{
+  display:grid;
+  grid-template-columns:1.5fr 420px;
+  gap:40px;
+  align-items:start;
+}
+
+.faq-heading h2{
+  font-size:42px;
+  margin:0 0 35px;
+  font-weight:700;
+  color:#1d1d1d;
+}
+
+.faq-heading span{
+  color:#ff5d36;
+}
+
+.faq-item{
+  border-bottom:1px solid #e4e4e4;
+}
+
+.faq-question{
+  width:100%;
+  background:none;
+  border:none;
+  padding:24px 0;
+  text-align:left;
+  font-size:20px;
+  font-weight:600;
+  color:#1d1d1d;
+  cursor:pointer;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.faq-icon{
+  color:#ff5d36;
+  font-size:24px;
+  transition:0.3s;
+}
+
+.faq-answer{
+  display:none;
+  padding-bottom:22px;
+}
+
+.faq-answer p{
+  margin:0;
+  color:#6d6d6d;
+  line-height:1.8;
+  font-size:15px;
+}
+
+.faq-item.active .faq-answer{
+  display:block;
+}
+
+.faq-item.active .faq-icon{
+  transform:rotate(45deg);
+}
+
+.faq-support{
+  background:#171744;
+  border-radius:22px;
+  padding:45px 35px;
+  color:#fff;
+  text-align:center;
+}
+
+.support-icon{
+  width:70px;
+  height:70px;
+  background:rgba(255,255,255,0.12);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0 auto 25px;
+  font-size:30px;
+}
+
+.faq-support h3{
+  font-size:32px;
+  margin:0 0 18px;
+}
+
+.faq-support p{
+  color:rgba(255,255,255,0.75);
+  line-height:1.8;
+  margin-bottom:30px;
+}
+
+.support-btn{
+  display:inline-block;
+  background:#ff5d36;
+  color:#fff;
+  text-decoration:none;
+  padding:16px 34px;
+  border-radius:12px;
+  font-weight:600;
+  transition:0.3s;
+}
+
+.support-btn:hover{
+  transform:translateY(-2px);
+}
+
+.support-phone{
+  margin-top:25px;
+  font-size:14px;
+  color:rgba(255,255,255,0.65);
+}
+
+@media(max-width:990px){
+
+  .faq-wrapper{
+    grid-template-columns:1fr;
+  }
+
+  .faq-support{
+    max-width:500px;
+  }
+
+}
+
+@media(max-width:768px){
+
+  .custom-faq-section{
+    padding:60px 0;
+  }
+
+  .faq-heading h2{
+    font-size:32px;
+  }
+
+  .faq-question{
+    font-size:17px;
+  }
+
+  .faq-support{
+    padding:35px 25px;
+  }
+
+  .faq-support h3{
+    font-size:26px;
+  }
+
+}
+
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+
+  const faqItems = document.querySelectorAll(".faq-item");
+
+  faqItems.forEach((item) => {
+
+    const question = item.querySelector(".faq-question");
+
+    question.addEventListener("click", () => {
+
+      item.classList.toggle("active");
+
+    });
+
+  });
+
+});
+</script>
+
+{% schema %}
+{
+  "name": "Custom FAQ",
+  "settings": [
+    {
+      "type": "text",
+      "id": "support_heading",
+      "label": "Support Heading",
+      "default": "Still Have Questions?"
+    },
+    {
+      "type": "textarea",
+      "id": "support_text",
+      "label": "Support Text",
+      "default": "Our support team is available 24/7 to help you with any queries."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Contact Support"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "text",
+      "id": "phone",
+      "label": "Phone Number",
+      "default": "1800-SHOPZONE"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "What is your return policy?"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "Answer",
+          "default": "We offer a 30-day hassle-free return policy on all products."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom FAQ",
+      "blocks": [
+        {
+          "type": "faq"
+        },
+        {
+          "type": "faq"
+        },
+        {
+          "type": "faq"
+        },
+        {
+          "type": "faq"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
